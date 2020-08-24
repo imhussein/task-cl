@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Input, { Movement } from "./components/Input";
+import Output from "./components/Output";
+import Header, { RecordProvider } from "./components/Header";
 
-function App() {
+export default function App() {
+  const [coordinates, setCoordinates] = useState<Movement[]>();
+  const playLastRecord = (coordinates: Movement[]) => {
+    setCoordinates(coordinates);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RecordProvider>
+        <Router>
+          <Header playLastRecord={playLastRecord} />
+          <div className="content">
+            <Switch>
+              <Route exact path="/">
+                <Input />
+              </Route>
+              <Route exact path="/output">
+                <Output coordinates={coordinates} />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </RecordProvider>
     </div>
   );
 }
-
-export default App;

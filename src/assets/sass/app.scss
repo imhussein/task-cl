@@ -1,0 +1,75 @@
+:root {
+  --main: #fff;
+  --bg: #f2f2f2;
+  --black: #000;
+  --headerHeight: 8rem;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Operator Mono";
+  color: var(--main);
+  font-size: 100%;
+  line-height: 1.7;
+  font-weight: 400;
+  overflow: hidden;
+}
+
+.header {
+  height: var(--headerHeight);
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__btns {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+  }
+
+  &__btn {
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.btn {
+  font-family: inherit;
+  color: var(--black);
+  padding: 1rem 3rem;
+  cursor: pointer;
+  border: 1px solid var(--black);
+  box-shadow: 0 0.1rem 0.7rem rgba(0, 0, 0, 0.1);
+  font-size: 1.8rem;
+  outline: none;
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}
+
+.content {
+  height: calc(100vh - var(--headerHeight));
+}
+
+.screen {
+  height: 100%;
+}
+
+.cursor-img {
+  transition: all 1s linear;
+}
